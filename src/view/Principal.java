@@ -10,12 +10,14 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 public class Principal extends javax.swing.JFrame {
 
     Conexion conexionBd;
 
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -31,13 +33,10 @@ public class Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        btnCambiarEstado = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnInformeRechazados = new javax.swing.JButton();
+        btnBuscarPedido = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -53,10 +52,13 @@ public class Principal extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        btnModificarPedido = new javax.swing.JButton();
+        btnCrearPedido = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
+        btnCrearDetalle = new javax.swing.JButton();
         btnDatosPedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,26 +67,24 @@ public class Principal extends javax.swing.JFrame {
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jToggleButton1.setText("Modificar");
-
-        jToggleButton2.setText("Crear Pedido");
-
-        jToggleButton3.setText("Borrar Pedido");
-
-        jButton1.setText("Cambiar Estado");
+        btnCambiarEstado.setText("Cambiar Estado");
 
         jButton2.setText("Mostrar Pedido");
 
-        jButton3.setText("Informe Rechazados");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnInformeRechazados.setText("Informe Rechazados");
+        btnInformeRechazados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnInformeRechazadosActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jButton4.setText("Buscar Pedido");
+        btnBuscarPedido.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        btnBuscarPedido.setText("Buscar Pedido");
+        btnBuscarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPedidoActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Pedido"));
 
@@ -198,26 +198,37 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        btnModificarPedido.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        btnModificarPedido.setText("Modificar");
+        btnModificarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPedidoActionPerformed(evt);
+            }
+        });
+
+        btnCrearPedido.setText("Crear Pedido");
+
+        jButton3.setText("Borrar Pedido");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnInformeRechazados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrearPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCambiarEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(95, 95, 95)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
+                        .addComponent(btnBuscarPedido)
+                        .addGap(78, 78, 78)
+                        .addComponent(btnModificarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))))
@@ -227,24 +238,24 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addComponent(jToggleButton1))
+                    .addComponent(btnBuscarPedido)
+                    .addComponent(btnModificarPedido))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jToggleButton3)
-                        .addGap(39, 39, 39)
-                        .addComponent(jToggleButton2)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton1)
+                        .addGap(60, 60, 60)
+                        .addComponent(btnInformeRechazados)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton3)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnCrearPedido)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnCambiarEstado)
                         .addGap(44, 44, 44)
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedido", jPanel1);
@@ -262,10 +273,10 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        jButton5.setText("Crear Detalle");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearDetalle.setText("Crear Detalle");
+        btnCrearDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCrearDetalleActionPerformed(evt);
             }
         });
 
@@ -282,7 +293,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(156, 156, 156)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCrearDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDatosPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(161, 161, 161))
@@ -298,9 +309,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(btnCrearDetalle)
                     .addComponent(btnDatosPedido))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Detalle Pedido", jPanel3);
@@ -316,10 +327,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -348,9 +356,9 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnInformeRechazadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeRechazadosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnInformeRechazadosActionPerformed
 
     private void btnDatosPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosPedidoActionPerformed
         DefaultTableModel auxmodel = new DefaultTableModel();
@@ -399,9 +407,17 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDatosPedidoActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnCrearDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearDetalleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnCrearDetalleActionPerformed
+
+    private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarPedidoActionPerformed
+
+    private void btnModificarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarPedidoActionPerformed
 
     
     
@@ -441,12 +457,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarPedido;
+    private javax.swing.JButton btnCambiarEstado;
+    private javax.swing.JButton btnCrearDetalle;
+    private javax.swing.JButton btnCrearPedido;
     private javax.swing.JButton btnDatosPedido;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnInformeRechazados;
+    private javax.swing.JButton btnModificarPedido;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -468,8 +487,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
+
+    private void modificarPedido() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
