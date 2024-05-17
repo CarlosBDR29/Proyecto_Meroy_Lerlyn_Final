@@ -412,7 +412,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearDetalleActionPerformed
 
     private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnBuscarPedidoActionPerformed
 
     private void btnModificarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPedidoActionPerformed
